@@ -1,155 +1,106 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-
 import {
-  Image,
-  ImageBackground,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
-function App(): React.JSX.Element {
-  
+const App = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.flexBetween}>
-        <TouchableOpacity>
-          <Image style={styles.smallIcon} source={require('./assets/icons/menu.png')}/>
+      <Text style={[styles.textColor, styles.timeText]}>00:00:00</Text>
+      <View style={styles.buttonSection}>
+        <TouchableOpacity style={[styles.radiusButton, styles.radiusColorLap]}>
+          <View style={[styles.button, styles.buttonLap1Color]}>
+            <Text style={styles.textLap}>Lap</Text>
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Image source={require('./assets/icons/man.png')}/>
-        </TouchableOpacity>
-      </View>
-      <Text style={[styles.header1, styles.mt30]}>Hey Alex,</Text>
-      <Text style={[styles.fs22, styles.mt15, styles.textColor]}>Find a course you want to learn</Text>
-      <View style={[styles.searchBox, styles.mt35]}> 
-        <TouchableOpacity>
-          <Image style={styles.smallIcon} source={require('./assets/icons/loupe.png')}/>
-        </TouchableOpacity>
-        <TextInput style={[styles.ml20, styles.fs18, styles.textColor]} placeholder='Search for anything'></TextInput>
-      </View>
-      <View style={[styles.flexBetween, styles.mt30]}>
-        <Text style={styles.header3}>Categories</Text>
-        <TouchableOpacity>
-          <Text style={[styles.header3, styles.textColorBlue]}>See All</Text>
+        <TouchableOpacity
+          style={[styles.radiusButton, styles.radiusColorStart]}>
+          <View style={[styles.button, styles.buttonStartColor]}>
+            <Text style={styles.textStart}>Start</Text>
+          </View>
         </TouchableOpacity>
       </View>
-      <View style={[styles.mt30, styles.listCategory]}>
-        <View style={[styles.categoryItem]}>
-          <ImageBackground imageStyle={{borderRadius: 20}}  style={styles.imageBackGround} resizeMode='cover' source={require('./assets/images/uxDesign.jpg')}>
-            <Text style={[styles.header3]}>UX Design</Text>
-            <Text>25 Courses</Text>
-          </ImageBackground>
+      <ScrollView>
+        <View style={styles.labResult}>
+          <Text style={styles.resultText}>Lap 1</Text>
+          <Text style={styles.resultText}>00:02,11</Text>
         </View>
-        <View style={[styles.categoryItem]}> 
-          <ImageBackground imageStyle={{borderRadius: 20}}  style={styles.imageBackGround} resizeMode='cover' source={require('./assets/images/marketing.jpg')}>
-            <Text style={[styles.header3]}>Marketing</Text>
-            <Text>20 Courses</Text>
-          </ImageBackground>
-        </View >
-        <View style={[styles.categoryItem]}>
-          <ImageBackground imageStyle={{borderRadius: 20}}  style={styles.imageBackGround} resizeMode='cover' source={require('./assets/images/photography.jpg')}>
-            <Text style={[styles.header3]}>Photography</Text>
-            <Text>16 Courses</Text>
-          </ImageBackground>
-        </View>
-        <View style={[styles.categoryItem]}>
-          <ImageBackground imageStyle={{borderRadius: 20}}  style={styles.imageBackGround} resizeMode='cover' source={require('./assets/images/business.jpg')}>
-            <Text style={[styles.header3]}>Business Photography</Text>
-            <Text>7 Courses</Text>
-          </ImageBackground>
-        </View>
-      </View>
+      </ScrollView>
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    backgroundColor: 'white'
-  },
-  flexBetween: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  header1: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: 'black',
-  },
-  header3: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: 'black',
+    backgroundColor: 'black',
+    flex: 1,
+    padding: 20,
+    alignItems: 'center',
   },
   textColor: {
-    color: 'rgb(103, 105, 117)'
+    color: 'white',
   },
-  textColorBlue: {
-    color: 'rgb(135,149,198)',
+  timeText: {
+    fontSize: 70,
+    fontWeight: '400',
+    marginVertical: 90,
   },
-  mt30: {
-    marginTop: 30,
+  textLap: {
+    fontSize: 20,
+    color: 'white',
   },
-  mt15: {
-    marginTop: 15,
+  textStart: {
+    fontSize: 20,
+    color: 'rgb(69 194 102)',
   },
-  fs22: {
-    fontSize: 22,
-  },
-  smallIcon: {
-    width: 25,
-    height: 25,
-  },
-  searchBox: {
-    flexDirection: 'row',
-    backgroundColor: 'rgb(233,233,235)',
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+  button: {
+    width: 80,
+    height: 80,
     borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  ml20: {
-    marginLeft: 20,
+  buttonLap1Color: {
+    backgroundColor: 'rgb(28 27 29)',
   },
-  fs18: {
-    fontSize: 18,
-    fontWeight: '300'
+  buttonStartColor: {
+    backgroundColor: 'rgb(9 41 16)',
   },
-  mt35: {
-    marginTop: 35,
-  },
-  listCategory: {
+  buttonSection: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    width: '100%',
   },
-  categoryItem: {
-    height: 300, 
-    backgroundColor: 'grey',
-    width: 180,
-    borderRadius: 20,
-    marginVertical: 10,
-    borderColor: 'black',
-    borderWidth: 0.5
+  radiusButton: {
+    width: 90,
+    height: 90,
+    borderRadius: 100,
+    borderWidth: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  imageBackGround: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-  }
+  radiusColorLap: {
+    borderColor: 'rgb(28 27 29)',
+  },
+  radiusColorStart: {
+    borderColor: 'rgb(9 41 16)',
+  },
+  labResult: {
+    marginTop: 15,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  resultText: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: 'white',
+  },
 });
-
-export default App;
